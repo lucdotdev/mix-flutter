@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:mix/screens/home/home.dart';
 import 'package:page_transition/page_transition.dart';
 
-class SignInScreen extends StatefulWidget {
+
+class LoginScreen extends StatefulWidget {
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _LoginScreenState extends State<LoginScreen> {
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+
+    return Scaffold(
+
         resizeToAvoidBottomPadding: false,
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
             Widget>[
@@ -23,7 +27,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Text(
                     'Mix',
                     style:
-                        TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold),
+                    TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
@@ -37,16 +41,18 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 Container(
                   child: Text(
-                    'Enregistrement',
+                    'Connexion',
                     style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                         color: Color(0xffff6702)),
                   ),
                 ),
+
               ],
             ),
           ),
+
           Container(
               padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
               child: Column(
@@ -54,6 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   TextField(
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
+
                         labelText: 'TELEPHONE',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
@@ -61,15 +68,6 @@ class _SignInScreenState extends State<SignInScreen> {
                             color: Colors.grey),
                         hintText: 'Ex: 0990000002',
                         // hintStyle: ,
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xffff6702)))),
-                  ),
-                  SizedBox(height: 10.0),
-                  TextField(
-                    decoration: InputDecoration(
-                        labelText: 'NOM',
-                        labelStyle: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.grey),
                         focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Color(0xffff6702)))),
                   ),
@@ -86,9 +84,10 @@ class _SignInScreenState extends State<SignInScreen> {
                     obscureText: true,
                   ),
                   SizedBox(height: 50.0),
+
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new HomeScreen()));
+                      Navigator.pushReplacement(context,  MaterialPageRoute(builder: (context) => new HomeScreen()));
                     },
                     child: Container(
                         height: 40.0,
@@ -98,7 +97,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           elevation: 0,
                           child: Center(
                             child: Text(
-                              'S\'enregister',
+                              'Se connecter',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -139,61 +138,60 @@ class _SignInScreenState extends State<SignInScreen> {
               )),
         ]));
   }
+}
 
-  Widget _facebookButton(T) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushReplacement(
-            T,
-            MaterialPageRoute(builder: (context) => new HomeScreen()));
-      },
-      child: Container(
-        height: 50,
-        margin: EdgeInsets.symmetric(vertical: 20),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-        ),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xff1959a9),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(5),
-                      topLeft: Radius.circular(5)),
-                ),
-                alignment: Alignment.center,
-                child: Text('f',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w400)),
-              ),
-            ),
-            Expanded(
-              flex: 5,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xff2872ba),
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(5),
-                      topRight: Radius.circular(5)),
-                ),
-                alignment: Alignment.center,
-                child: Text('Continuer avec Facebook',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400)),
-              ),
-            ),
-          ],
-        ),
+
+Widget _facebookButton(T) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.pushReplacement(T,  MaterialPageRoute(builder: (context) => new HomeScreen()));
+    },
+    child: Container(
+      height: 50,
+      margin: EdgeInsets.symmetric(vertical: 20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
-    );
-  }
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color(0xff1959a9),
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(5),
+                    topLeft: Radius.circular(5)),
+              ),
+              alignment: Alignment.center,
+              child: Text('f',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w400)),
+            ),
+          ),
+          Expanded(
+            flex: 5,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color(0xff2872ba),
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(5),
+                    topRight: Radius.circular(5)),
+              ),
+              alignment: Alignment.center,
+              child: Text('Continuer avec Facebook',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400)),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
 ///OR DIVIDER

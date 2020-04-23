@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mix/animations/animations.dart';
 import 'package:mix/screens/screens.dart';
+import 'package:page_transition/page_transition.dart';
 
 
 
@@ -49,8 +50,7 @@ class _RedirectorScreenState extends State<RedirectorScreen> {
           ///
           GestureDetector(
             onTap:()=>{
-              Navigator.of(context).push(
-                  new MaterialPageRoute(builder: (context) => new SignInScreen()))
+              Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: SignInScreen()))
             },
             child: Container(
               width: width-width/10,
@@ -79,9 +79,8 @@ class _RedirectorScreenState extends State<RedirectorScreen> {
           ///
           GestureDetector(
             onTap:()=>{
-              Navigator.of(context).push(
-                  new MaterialPageRoute(builder: (context) => new SignInScreen()))
-            },
+            Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: LoginScreen()))
+          },
             child: Container(
               width: width-width/10,
               height: heigth/18,
