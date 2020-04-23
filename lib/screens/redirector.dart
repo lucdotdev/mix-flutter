@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 
 
 class RedirectorScreen extends StatefulWidget {
@@ -39,71 +41,59 @@ class _RedirectorScreenState extends State<RedirectorScreen> {
 
           ///Signup buttton
           ///
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              width: width - width / 10,
-              height: heigth / 20,
-              child: RaisedButton(
-                onPressed: () => {},
-                color: Color(0xffff6d0d),
-                shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(10.0),
-                ),
-                child: Text(
-                  'Creer votre Compte',
-                  style: TextStyle(color: Colors.white, fontSize: width / 15),
-                ),
-              ),
-            ),
-          ),
-
-          ///
-          ///Signup buttton
-
-          ///Space
-          ///
-          SizedBox(),
-
-          ///
-          ///Space
-          Expanded(
-            flex: 5,
+          GestureDetector(
+            onTap: ()=>{},
             child: Container(
+              width: width-width/10,
+              height: heigth/18,
               decoration: BoxDecoration(
-                color: Color(0xff2872ba),
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(5),
-                    topRight: Radius.circular(5)),
+                color: Color(0xffff6702),
+                borderRadius: BorderRadius.all(Radius.circular(12))
               ),
               alignment: Alignment.center,
-              child: Text('Continuer avec Facebook',
+              child: Text('Créer un compte',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: width/20,
                       fontWeight: FontWeight.w400)),
             ),
           ),
-          ///Login button
           ///
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              width: width - width / 10,
-              height: heigth / 20,
-              child: RaisedButton(
-                  onPressed: () => {},
-                  child: Text(
-                    'Connexion',
-                    style: TextStyle(color: Colors.white, fontSize: width / 15),
-                  ),
-                  color: Colors.transparent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0),
-                      side: BorderSide(color: Colors.white))),
-            ),
+          ///
+
+          SizedBox(
+            height: heigth / 30,
           ),
 
+          ///LOGIN BUTTON
+          ///
+          ///
+          GestureDetector(
+            onTap:()=>{
+              Navigator.of(context).pushReplacement(
+                  new MaterialPageRoute(builder: (context) => new RedirectorScreen()))
+            },
+            child: Container(
+              width: width-width/10,
+              height: heigth/18,
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.all(Radius.circular(12),
+
+                  ),
+                border: Border.all(
+                    color: Colors.white,
+                  width: 3
+                ),
+              ),
+              alignment: Alignment.center,
+              child: Text('Connexion',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: width/20,
+                      fontWeight: FontWeight.w400)),
+            ),
+          ),
           ///
           ///Login button
           SizedBox(
