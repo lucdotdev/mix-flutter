@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignInScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignInScreenState createState() => _SignInScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -13,24 +13,24 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
             Widget>[
           Container(
-            child: Stack(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
                   child: Text(
-                    'Signup',
+                    'Mix',
                     style:
-                    TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(260.0, 125.0, 0.0, 0.0),
                   child: Text(
                     '.',
                     style: TextStyle(
                         fontSize: 80.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.green),
+                        color: Color(0xffff6702)),
                   ),
                 )
               ],
@@ -41,53 +41,53 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: <Widget>[
                   TextField(
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                        labelText: 'EMAIL',
+
+                        labelText: 'TELEPHONE',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
                             color: Colors.grey),
-                        // hintText: 'EMAIL',
+                        hintText: 'Ex: 0990000002',
                         // hintStyle: ,
                         focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green))),
+                            borderSide: BorderSide(color: Color(0xffff6702)))),
                   ),
                   SizedBox(height: 10.0),
                   TextField(
                     decoration: InputDecoration(
-                        labelText: 'PASSWORD ',
+                        labelText: 'NOM',
                         labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
+                            fontWeight: FontWeight.bold, color: Colors.grey),
                         focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green))),
+                            borderSide: BorderSide(color: Color(0xffff6702)))),
+                  ),
+                  SizedBox(height: 10.0),
+                  TextField(
+                    decoration: InputDecoration(
+                        labelText: 'MOT DE PASSE ',
+                        labelStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xffff6702)))),
                     obscureText: true,
                   ),
-                  SizedBox(height: 10.0),
-                  TextField(
-                    decoration: InputDecoration(
-                        labelText: 'NICK NAME ',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green))),
-                  ),
                   SizedBox(height: 50.0),
+                  _divider(),
                   Container(
                       height: 40.0,
                       child: Material(
                         borderRadius: BorderRadius.circular(20.0),
-                        shadowColor: Colors.greenAccent,
-                        color: Colors.green,
-                        elevation: 7.0,
+                        color: Color(0xffff6702),
+                        elevation: 0,
                         child: GestureDetector(
                           onTap: () {},
                           child: Center(
                             child: Text(
-                              'SIGNUP',
+                              'S\'enregister',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -112,42 +112,49 @@ class _LoginScreenState extends State<LoginScreen> {
                         onTap: () {
                           Navigator.of(context).pop();
                         },
-                        child:
-
-                        Center(
-                          child: Text('Go Back',
+                        child: Center(
+                          child: Text('Retour',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Montserrat')),
                         ),
-
-
                       ),
                     ),
                   ),
                 ],
               )),
-          // SizedBox(height: 15.0),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: <Widget>[
-          //     Text(
-          //       'New to Spotify?',
-          //       style: TextStyle(
-          //         fontFamily: 'Montserrat',
-          //       ),
-          //     ),
-          //     SizedBox(width: 5.0),
-          //     InkWell(
-          //       child: Text('Register',
-          //           style: TextStyle(
-          //               color: Colors.green,
-          //               fontFamily: 'Montserrat',
-          //               fontWeight: FontWeight.bold,
-          //               decoration: TextDecoration.underline)),
-          //     )
-          //   ],
-          // )
         ]));
   }
+}
+Widget _divider() {
+  return Container(
+    margin: EdgeInsets.symmetric(vertical: 10),
+    child: Row(
+      children: <Widget>[
+        SizedBox(
+          width: 20,
+        ),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Divider(
+              thickness: 1,
+            ),
+          ),
+        ),
+        Text('ou'),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Divider(
+              thickness: 1,
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 20,
+        ),
+      ],
+    ),
+  );
 }

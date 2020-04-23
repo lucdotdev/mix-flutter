@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mix/animations/animations.dart';
+import 'package:mix/screens/screens.dart';
 
 
 
@@ -30,11 +32,15 @@ class _RedirectorScreenState extends State<RedirectorScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               width: double.infinity,
-              child: Text(
-                'Ecoutez de la bonne musique Soutenez vos artiste favoris Publier votre musique en ligne',
-                textAlign: TextAlign.center,
-                style:
-                    new TextStyle(color: Colors.white, fontSize: width / 15),
+              child: FadeAnimation(
+                delay: 1,
+                direction: "x",
+                child: Text(
+                  'Ecoutez de la bonne musique Soutenez vos artiste favoris Publier votre musique en ligne',
+                  textAlign: TextAlign.center,
+                  style:
+                      new TextStyle(color: Colors.white, fontSize: width / 15),
+                ),
               ),
             ),
           ),
@@ -42,7 +48,10 @@ class _RedirectorScreenState extends State<RedirectorScreen> {
           ///Signup buttton
           ///
           GestureDetector(
-            onTap: ()=>{},
+            onTap:()=>{
+              Navigator.of(context).push(
+                  new MaterialPageRoute(builder: (context) => new SignInScreen()))
+            },
             child: Container(
               width: width-width/10,
               height: heigth/18,
@@ -70,8 +79,8 @@ class _RedirectorScreenState extends State<RedirectorScreen> {
           ///
           GestureDetector(
             onTap:()=>{
-              Navigator.of(context).pushReplacement(
-                  new MaterialPageRoute(builder: (context) => new RedirectorScreen()))
+              Navigator.of(context).push(
+                  new MaterialPageRoute(builder: (context) => new SignInScreen()))
             },
             child: Container(
               width: width-width/10,

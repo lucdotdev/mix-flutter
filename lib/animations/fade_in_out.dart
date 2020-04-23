@@ -13,11 +13,11 @@ class FadeAnimation extends StatelessWidget {
     
     _getdirection(){
       if(direction=="x"){
-          return "translateY";
+          return "translateX";
       }else if (direction=="y"){
-         return "translateX";
+         return "translateY";
       } else{
-        return "translateY";
+        return "translateX";
       }
      
     }
@@ -25,7 +25,7 @@ class FadeAnimation extends StatelessWidget {
       Track("opacity").add(Duration(milliseconds: 500), Tween(begin: 0.0, end: 1.0)),
       Track(_getdirection()).add(
           Duration(milliseconds: 500), Tween(begin: 130.0, end: 0.0),
-          curve: Curves.easeOut)
+          curve: Curves.easeIn)
     ]);
 
     return ControlledAnimation(
