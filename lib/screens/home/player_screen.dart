@@ -30,8 +30,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
               Navigator.of(context).pop();
             },
           ),
-          title: Text("Music World",
-              style: TextStyle(color:  Color(0xffff6702), fontFamily: "Nexa")),
+          title: Text("Mix",
+              style: TextStyle(color:  Color(0xffff6702),)),
           centerTitle: true,
           actions: <Widget>[
             IconButton(
@@ -92,7 +92,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     style: TextStyle(
                         color:  Color(0xffff6702),
                         fontSize: 20.0,
-                        fontFamily: "Nexa"),
+                       ),
                   ),
                   SizedBox(
                     height: 8.0,
@@ -102,7 +102,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     style: TextStyle(
                         color:  Color(0xffff6702),
                         fontSize: 18.0,
-                        fontFamily: "NexaLight"),
+                       ),
                   )
                 ],
               ),
