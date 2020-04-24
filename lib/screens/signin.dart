@@ -8,6 +8,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -88,7 +89,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(height: 50.0),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new HomeScreen()));
+                      Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (context) => new HomeScreen()));
                     },
                     child: Container(
                         height: 40.0,
@@ -134,17 +135,16 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   SizedBox(),
                   _divider(),
-                  _facebookButton(context),
+                  _facebookButton(),
                 ],
               )),
         ]));
   }
 
-  Widget _facebookButton(T) {
+  Widget _facebookButton() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushReplacement(
-            T,
+        Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => new HomeScreen()));
       },
       child: Container(

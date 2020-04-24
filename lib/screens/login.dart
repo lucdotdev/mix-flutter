@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mix/screens/home/home.dart';
-import 'package:page_transition/page_transition.dart';
+
 
 
 class LoginScreen extends StatefulWidget {
@@ -87,7 +87,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(context,  MaterialPageRoute(builder: (context) => new HomeScreen()));
+                      Navigator.of(context)..pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                          HomeScreen()), (Route<dynamic> route) => false);
                     },
                     child: Container(
                         height: 40.0,
@@ -133,99 +134,100 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(),
                   _divider(),
-                  _facebookButton(context),
+                  _facebookButton(),
                 ],
               )),
         ]));
   }
-}
 
-
-Widget _facebookButton(T) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.pushReplacement(T,  MaterialPageRoute(builder: (context) => new HomeScreen()));
-    },
-    child: Container(
-      height: 50,
-      margin: EdgeInsets.symmetric(vertical: 20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+  Widget _facebookButton() {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context)..pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+            HomeScreen()), (Route<dynamic> route) => false);
+      },
+      child: Container(
+        height: 50,
+        margin: EdgeInsets.symmetric(vertical: 20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xff1959a9),
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(5),
+                      topLeft: Radius.circular(5)),
+                ),
+                alignment: Alignment.center,
+                child: Text('f',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w400)),
+              ),
+            ),
+            Expanded(
+              flex: 5,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xff2872ba),
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(5),
+                      topRight: Radius.circular(5)),
+                ),
+                alignment: Alignment.center,
+                child: Text('Continuer avec Facebook',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400)),
+              ),
+            ),
+          ],
+        ),
       ),
+    );
+  }
+
+  ///OR DIVIDER
+  ///
+  ///
+  Widget _divider() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xff1959a9),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(5),
-                    topLeft: Radius.circular(5)),
-              ),
-              alignment: Alignment.center,
-              child: Text('f',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w400)),
-            ),
+          SizedBox(
+            width: 20,
           ),
           Expanded(
-            flex: 5,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xff2872ba),
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(5),
-                    topRight: Radius.circular(5)),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                thickness: 1,
               ),
-              alignment: Alignment.center,
-              child: Text('Continuer avec Facebook',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400)),
             ),
+          ),
+          Text('ou'),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                thickness: 1,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 20,
           ),
         ],
       ),
-    ),
-  );
+    );
+  }
 }
 
-///OR DIVIDER
-///
-///
-Widget _divider() {
-  return Container(
-    margin: EdgeInsets.symmetric(vertical: 10),
-    child: Row(
-      children: <Widget>[
-        SizedBox(
-          width: 20,
-        ),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Divider(
-              thickness: 1,
-            ),
-          ),
-        ),
-        Text('ou'),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Divider(
-              thickness: 1,
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 20,
-        ),
-      ],
-    ),
-  );
-}
