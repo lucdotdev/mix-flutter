@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mix/screens/home/home.dart';
+import 'package:mix/screens/screens.dart';
+import 'package:page_transition/page_transition.dart';
 
 
 
@@ -87,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context)..pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
                           HomeScreen()), (Route<dynamic> route) => false);
                     },
                     child: Container(
@@ -121,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(20.0)),
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context).pop();
+                          Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.leftToRight, child: RedirectorScreen()));
                         },
                         child: Center(
                           child: Text('Retour',
@@ -143,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _facebookButton() {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)..pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
             HomeScreen()), (Route<dynamic> route) => false);
       },
       child: Container(

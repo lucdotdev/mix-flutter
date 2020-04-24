@@ -50,7 +50,7 @@ class _RedirectorScreenState extends State<RedirectorScreen> {
           ///
           GestureDetector(
             onTap:()=>{
-              Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: SignInScreen()))
+              Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.rightToLeft, child: SignInScreen()))
             },
             child: Container(
               width: width-width/10,
@@ -79,7 +79,7 @@ class _RedirectorScreenState extends State<RedirectorScreen> {
           ///
           GestureDetector(
             onTap:()=>{
-            Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: LoginScreen()))
+            Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.rightToLeft, child: LoginScreen()))
           },
             child: Container(
               width: width-width/10,

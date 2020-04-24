@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mix/screens/home/category_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    Container(),
+                    MyTabView(),
                     Container(),
                     Container()
                   ]
@@ -94,12 +95,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               )
         ],
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {},
-      backgroundColor: Colors.white,
-      child: Icon(Icons.fastfood),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-   
     );
   }
 }

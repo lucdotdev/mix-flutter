@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mix/screens/home/home.dart';
+import 'package:mix/screens/home/home_screen.dart';
+import 'package:mix/screens/redirector.dart';
 import 'package:page_transition/page_transition.dart';
+
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -122,7 +124,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           borderRadius: BorderRadius.circular(20.0)),
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context).pop();
+                          Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.leftToRight, child: RedirectorScreen()));
                         },
                         child: Center(
                           child: Text('Retour',
