@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loading/indicator/ball_beat_indicator.dart';
 import 'package:loading/loading.dart';
@@ -40,13 +39,10 @@ class _MyTabViewState extends State<MyTabView> {
                               children: <Widget>[
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
-                                  child:  CachedNetworkImage(
-                                    width: width/3,
-                                    imageUrl:  snapshot.data[index].path,
-                                    placeholder: (context, url) => CircularProgressIndicator(
-
-                                    ),
-                                    errorWidget: (context, url, error) => Icon(Icons.error),
+                                  child:  Image.network(
+                                   
+                                  snapshot.data[index].path,
+                                   width: width/3,
                                   ),
                                 ),
                                 SizedBox(height: height/100,),
