@@ -24,8 +24,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: IconButton(
+
             icon: Icon(Icons.arrow_back_ios, color: Color(0xffff6702)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
           title: Text("Music World",
               style: TextStyle(color:  Color(0xffff6702), fontFamily: "Nexa")),
@@ -85,7 +88,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
               Column(
                 children: <Widget>[
                   Text(
-                    "Justin Bieber fit. Never say",
+                    widget.title,
                     style: TextStyle(
                         color:  Color(0xffff6702),
                         fontSize: 20.0,

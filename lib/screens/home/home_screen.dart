@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         elevation: 0.0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.search, color: Color(0xFF545D68)),
+          icon: Icon(Icons.search, color:  Color(0xffff6702)),
           onPressed: () {},
         ),
         // title: Text('Mix.',
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         //         color: Color(0xFF545D68))),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.more_vert, color: Color(0xFF545D68)),
+            icon: Icon(Icons.more_vert, color:  Color(0xffff6702)),
             onPressed: () {},
           ),
         ],
@@ -57,8 +57,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               indicatorColor: Colors.black,
               indicatorSize: TabBarIndicatorSize.label,
               labelColor:  Color(0xffff6702),
-              isScrollable: true,
-              labelPadding: EdgeInsets.only(left: 45.0),
+              isScrollable: false,
+              labelPadding: EdgeInsets.only(left: 20.0),
               unselectedLabelColor: Color(0xFFCDCDCD),
               tabs: [
                 Tab(
@@ -88,8 +88,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   controller: _tabController,
                   children: [
                     MyTabView(),
-                    Container(),
-                    Container()
+                    MyTabView(),
+                    MyTabView(),
+
                   ]
                 )
               )

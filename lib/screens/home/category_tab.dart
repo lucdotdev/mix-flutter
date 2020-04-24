@@ -19,57 +19,55 @@ class _MyTabViewState extends State<MyTabView> {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.all(width / 15),
-          child: FutureBuilder(
-              future: getmusic(),
-              builder: (context, AsyncSnapshot snapshot) {
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                      physics: ClampingScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return  GestureDetector(
-                          onTap: ()=>{
-                            Navigator.of(context).push(   new MaterialPageRoute(builder: (context) => new PlayerScreen(title: snapshot.data[index].title ,path: snapshot.data[index].path, )))
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: new Column(
-                              children: <Widget>[
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child:  Image.network(
-                                   
-                                  snapshot.data[index].path,
-                                   width: width/3,
-                                  ),
-                                ),
-                                SizedBox(height: height/100,),
-                                new Text(
-                                  snapshot.data[index].title.length > 20 ? snapshot.data[index].title.substring(0,20).toUpperCase() +' ...' :   snapshot.data[index].title.toUpperCase(),
-                                  overflow: TextOverflow.clip,
-                                  maxLines: 5,
-                                  style: new TextStyle(
-                                      color:Colors.white70
-                                  ),
+          child: SizedBox(
+            height: height/2.7,
+            child: FutureBuilder(
+                future: getmusic(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                        physics: ClampingScrollPhysics(),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return  GestureDetector(
+                            onTap: ()=>{
+                              Navigator.of(context).push(   new MaterialPageRoute(builder: (context) => new PlayerScreen(title: snapshot.data[index].title ,path: snapshot.data[index].path, )))
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: new Column(
+                                children: <Widget>[
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child:  Image.network(
 
-                                )
-                              ],
+                                    snapshot.data[index].path,
+                                     width: width/3,
+                                    ),
+                                  ),
+                                  SizedBox(height: height/100,),
+                                  new Text(
+                                    snapshot.data[index].title.length > 20 ? snapshot.data[index].title.substring(0,20).toUpperCase() +' ...' :   snapshot.data[index].title.toUpperCase(),
+                                    overflow: TextOverflow.clip,
+                                    maxLines: 5,
+                                    style: new TextStyle(
+                                        color:Colors.black
+                                    ),
+
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      });
-                }
-                return Center(
-                  child: Container(
-                    child: Loading(
-                        indicator: BallBeatIndicator(),
-                        size: 100.0,
-                        color: Color(0xffff6702)),
-                  ),
-                );
-              }),
+                          );
+                        });
+                  }
+                  return CircularProgressIndicator(
+
+                  );
+                }),
+          ),
         )
       ],
     );
