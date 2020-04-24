@@ -40,7 +40,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 Container(
                   child: Text(
-                    'Enregistrement',
+                    'Inscription',
                     style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
