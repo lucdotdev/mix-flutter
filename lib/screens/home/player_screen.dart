@@ -184,20 +184,20 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                 bottomLeft: Radius.circular(30.0))),
                       ),
                     ),
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          song("assets/cover_01.jpg", "Never say",
-                              "Believe 2012"),
-                          song("assets/cover_02.jpg", "Beauty...",
-                              "Believe 2012"),
-                          song("assets/cover_03.png", "Boyfriend",
-                              "Believe 2012"),
-                        ],
-                      ),
-                    )
+                    // Center(
+                    //   child: Column(
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     crossAxisAlignment: CrossAxisAlignment.center,
+                    //     children: <Widget>[
+                    //       song("assets/cover_01.jpg", "Never say",
+                    //           "Believe 2012"),
+                    //       song("assets/cover_02.jpg", "Beauty...",
+                    //           "Believe 2012"),
+                    //       song("assets/cover_03.png", "Boyfriend",
+                    //           "Believe 2012"),
+                    //     ],
+                    //   ),
+                    // )
                   ],
                 ),
               )
