@@ -25,7 +25,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
     _player = AudioPlayer();
     _player
         .setUrl(
-        "https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3")
+       "https://www.republikville.com/_media/_chanson/_musiques/Altachone%20Mawa_Confinement_m0yrejtp.mp3")
         .catchError((error) {
       // catch audio error ex: 404 url, wrong url ...
       print(error);
