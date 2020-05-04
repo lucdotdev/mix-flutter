@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:rxdart/rxdart.dart';
 
 
 class PlayerScreen extends StatefulWidget {
@@ -13,8 +15,28 @@ class PlayerScreen extends StatefulWidget {
 }
 
 class _PlayerScreenState extends State<PlayerScreen> {
-  double _thumbPercent = 0.4;
+  final _volumeSubject = BehaviorSubject.seeded(1.0);
+  final _speedSubject = BehaviorSubject.seeded(1.0);
+  AudioPlayer _player;
 
+  @override
+  void initState() {
+    super.initState();
+    _player = AudioPlayer();
+    _player
+        .setUrl(
+        "https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3")
+        .catchError((error) {
+      // catch audio error ex: 404 url, wrong url ...
+      print(error);
+    });
+  }
+
+  @override
+  void dispose() {
+    _player.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,78 +107,133 @@ class _PlayerScreenState extends State<PlayerScreen> {
               SizedBox(
                 height: 25.0,
               ),
-              Column(
-                children: <Widget>[
-                  Text(
-                    widget.title,
-                    style: TextStyle(
-                        color:  Color(0xffff6702),
-                        fontSize: 20.0,
-                       ),
+    Column(
+                    children: <Widget>[
+                      Text(
+                        widget.title,
+                        style: TextStyle(
+                            color:  Color(0xffff6702),
+                            fontSize: 20.0,
+                           ),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Text(
+                        "The Weeknd",
+                        style: TextStyle(
+                            color:  Color(0xffff6702),
+                            fontSize: 18.0,
+                           ),
+                      )
+                    ],
                   ),
-                  SizedBox(
-                    height: 8.0,
-                  ),
-                  Text(
-                    "The Weeknd",
-                    style: TextStyle(
-                        color:  Color(0xffff6702),
-                        fontSize: 18.0,
-                       ),
-                  )
-                ],
-              ),
               SizedBox(
                 height: 5.0,
               ),
-              Container(
-                width: 350.0,
-                height: 150.0,
-                child: Stack(
-                  children: <Widget>[
-                    Center(
-                      child: Container(
-                        height: 65.0,
-                        width: 290.0,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Color(0xffff6702), width: 3.0),
-                            borderRadius: BorderRadius.circular(40.0)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(Icons.fast_rewind,
-                                  size: 55.0, color:  Color(0xffff6702)),
-                              Expanded(
-                                child: Container(),
+              Text("Track position"),
+              StreamBuilder<Duration>(
+                stream: _player.durationStream,
+                builder: (context, snapshot) {
+                  final duration = snapshot.data ?? Duration.zero;
+                  return StreamBuilder<Duration>(
+                    stream: _player.getPositionStream(),
+                    builder: (context, snapshot) {
+                      var position = snapshot.data ?? Duration.zero;
+                      if (position > duration) {
+                        position = duration;
+                      }
+                      return SeekBar(
+                        duration: duration,
+                        position: position,
+                        onChangeEnd: (newPosition) {
+                          _player.seek(newPosition);
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+              StreamBuilder<FullAudioPlaybackState>(
+                  stream: _player.fullPlaybackStateStream,
+                  builder: (context, snapshot) {
+                  final fullState = snapshot.data;
+                  final state = fullState?.state;
+                  final buffering = fullState?.buffering;
+                  return Container(
+                    width: 350.0,
+                    height: 150.0,
+                    child: Stack(
+                      children: <Widget>[
+                        Center(
+                          child: Container(
+                            height: 65.0,
+                            width: 290.0,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Color(0xffff6702), width: 3.0),
+                                borderRadius: BorderRadius.circular(40.0)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(Icons.fast_rewind,
+                                      size: 55.0, color:  Color(0xffff6702)),
+                                  Expanded(
+                                    child: Container(),
+                                  ),
+                                  Icon(Icons.fast_forward,
+                                      size: 55.0, color:  Color(0xffff6702))
+                                ],
                               ),
-                              Icon(Icons.fast_forward,
-                                  size: 55.0, color:  Color(0xffff6702))
-                            ],
+                            ),
                           ),
                         ),
-                      ),
+                        state == AudioPlaybackState.connecting || buffering == true ?
+                          Container(
+                            margin: EdgeInsets.all(8.0),
+                            width: 64.0,
+                            height: 64.0,
+                            child: CircularProgressIndicator(),
+                          ): state == AudioPlaybackState.playing ?
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            width: 92.0,
+                            height: 92.0,
+                            decoration: BoxDecoration(
+                                color:  Color(0xffff6702), shape: BoxShape.circle),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.pause,
+                                size: 45.0,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ) :  Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            width: 92.0,
+                            height: 92.0,
+                            decoration: BoxDecoration(
+                                color:  Color(0xffff6702), shape: BoxShape.circle),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.play_arrow,
+                                size: 45.0,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                        )
+
+                      ],
                     ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        width: 92.0,
-                        height: 92.0,
-                        decoration: BoxDecoration(
-                            color:  Color(0xffff6702), shape: BoxShape.circle),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.play_arrow,
-                            size: 45.0,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {},
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                  );
+                }
               ),
               Container(
                 height: 190.0,
@@ -247,5 +324,52 @@ class MClipper extends CustomClipper<Rect> {
   @override
   bool shouldReclip(CustomClipper<Rect> oldClipper) {
     return true;
+  }
+
+
+
+}
+class SeekBar extends StatefulWidget {
+  final Duration duration;
+  final Duration position;
+  final ValueChanged<Duration> onChanged;
+  final ValueChanged<Duration> onChangeEnd;
+
+  SeekBar({
+    @required this.duration,
+    @required this.position,
+    this.onChanged,
+    this.onChangeEnd,
+  });
+
+  @override
+  _SeekBarState createState() => _SeekBarState();
+}
+
+
+class _SeekBarState extends State<SeekBar> {
+  double _dragValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+      min: 0.0,
+      max: widget.duration.inMilliseconds.toDouble(),
+      value: _dragValue ?? widget.position.inMilliseconds.toDouble(),
+      onChanged: (value) {
+        setState(() {
+          _dragValue = value;
+        });
+        if (widget.onChanged != null) {
+          widget.onChanged(Duration(milliseconds: value.round()));
+        }
+      },
+      onChangeEnd: (value) {
+        _dragValue = null;
+        if (widget.onChangeEnd != null) {
+          widget.onChangeEnd(Duration(milliseconds: value.round()));
+        }
+      },
+    );
   }
 }
