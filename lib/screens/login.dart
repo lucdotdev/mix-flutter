@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
 
         resizeToAvoidBottomPadding: false,
-        body: SingleScrollView(
+        body: SingleChildScrollView(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
               Widget>[
             Container(
