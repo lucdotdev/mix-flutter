@@ -199,7 +199,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                           size: 45.0,
                                           color: Colors.white,
                                         ),
-                                        onPressed: () {},
+                                        onPressed: _player.pause,
                                       ),
                                     ),
                                   ) :  Align(
@@ -215,7 +215,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                           size: 45.0,
                                           color: Colors.white,
                                         ),
-                                        onPressed: () {},
+                                        onPressed:_player.play
                                       ),
                                     ),
                                   ),
