@@ -176,16 +176,14 @@ class _PlayerScreenState extends State<PlayerScreen> {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 25.0),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Icon(Icons.fast_rewind,
                                       size: 55.0, color:  Color(0xffff6702)),
                                   state == AudioPlaybackState.connecting || buffering == true ?
                                   Container(
                                     margin: EdgeInsets.all(8.0),
-                                    width: 64.0,
-                                    height: 64.0,
                                     child: CircularProgressIndicator(
-
                                     ),
                                   ): state == AudioPlaybackState.playing ?
                                   Align(
