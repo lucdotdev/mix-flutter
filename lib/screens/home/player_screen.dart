@@ -179,9 +179,49 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                 children: <Widget>[
                                   Icon(Icons.fast_rewind,
                                       size: 55.0, color:  Color(0xffff6702)),
-                                  Expanded(
-                                    child: Container(),
+                                  state == AudioPlaybackState.connecting || buffering == true ?
+                                  Container(
+                                    margin: EdgeInsets.all(8.0),
+                                    width: 64.0,
+                                    height: 64.0,
+                                    child: CircularProgressIndicator(
+
+                                    ),
+                                  ): state == AudioPlaybackState.playing ?
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Container(
+                                      width: 92.0,
+                                      height: 92.0,
+                                      decoration: BoxDecoration(
+                                          color:  Color(0xffff6702), shape: BoxShape.circle),
+                                      child: IconButton(
+                                        icon: Icon(
+                                          Icons.pause,
+                                          size: 45.0,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () {},
+                                      ),
+                                    ),
+                                  ) :  Align(
+                                    alignment: Alignment.center,
+                                    child: Container(
+                                      width: 92.0,
+                                      height: 92.0,
+                                      decoration: BoxDecoration(
+                                          color:  Color(0xffff6702), shape: BoxShape.circle),
+                                      child: IconButton(
+                                        icon: Icon(
+                                          Icons.play_arrow,
+                                          size: 45.0,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () {},
+                                      ),
+                                    ),
                                   ),
+
                                   Icon(Icons.fast_forward,
                                       size: 55.0, color:  Color(0xffff6702))
                                 ],
@@ -189,46 +229,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
                             ),
                           ),
                         ),
-                        state == AudioPlaybackState.connecting || buffering == true ?
-                          Container(
-                            margin: EdgeInsets.all(8.0),
-                            width: 64.0,
-                            height: 64.0,
-                            child: CircularProgressIndicator(),
-                          ): state == AudioPlaybackState.playing ?
-                        Align(
-                          alignment: Alignment.center,
-                          child: Container(
-                            width: 92.0,
-                            height: 92.0,
-                            decoration: BoxDecoration(
-                                color:  Color(0xffff6702), shape: BoxShape.circle),
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.pause,
-                                size: 45.0,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ) :  Align(
-                          alignment: Alignment.center,
-                          child: Container(
-                            width: 92.0,
-                            height: 92.0,
-                            decoration: BoxDecoration(
-                                color:  Color(0xffff6702), shape: BoxShape.circle),
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.play_arrow,
-                                size: 45.0,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                        )
 
                       ],
                     ),
